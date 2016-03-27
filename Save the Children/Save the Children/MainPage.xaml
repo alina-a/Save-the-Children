@@ -47,13 +47,13 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-        <Button x:Name="startButton" Content="Старт!" Grid.Row="2" HorizontalAlignment="Center"/>
+        <Button x:Name="startButton" Content="Старт!" Grid.Row="2" HorizontalAlignment="Center" Click="startButton_Click"/>
         <StackPanel Grid.Column="2" Orientation="Vertical" Grid.Row="2">
             <TextBlock TextWrapping="Wrap" Text="Берегись его" Style="{StaticResource SubheaderTextStyle}"/>
             <ContentControl Content="ContentControl" HorizontalAlignment="Center" VerticalAlignment="Center" Template="{StaticResource EnemyTemplate}"/>
         </StackPanel>
         <ProgressBar Grid.Column="1" Grid.Row="2" Height="20"/>
-        <Canvas Grid.Row="1" Grid.ColumnSpan="3">
+        <Canvas x:Name="playArea" Grid.Row="1" Grid.ColumnSpan="3">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>

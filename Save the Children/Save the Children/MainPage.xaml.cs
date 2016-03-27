@@ -21,6 +21,7 @@ namespace Save_the_Children
     /// </summary>
     public sealed partial class MainPage : Save_the_Children.Common.LayoutAwarePage
     {
+        Random random = new Random();
         public MainPage()
         {
             this.InitializeComponent();
@@ -47,6 +48,26 @@ namespace Save_the_Children
         /// <param name="pageState">Пустой словарь, заполняемый сериализуемым состоянием.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddEnemy();
+        }
+
+        private void AddEnemy()
+        {
+            ContentControl enemy = new ContentControl();
+            enemy.Template = Resources["EnemyTemplate"] as ControlTemplate;
+            AnimateEnemy(enemy, 0, playArea.ActualWidth - 100, "(Canvas.Left)");
+            AnimateEnemy(enemy, random.Next((int)playArea.ActualHeight - 100),
+                random.Next((int)playArea.ActualHeight - 100), "(Canvas.Top)");
+            playArea.Children.Add(enemy);
+        }
+
+        private void AnimateEnemy(ContentControl enemy, int p1, double p2, string p3)
+        {
+            throw new NotImplementedException();
         }
     }
 }
