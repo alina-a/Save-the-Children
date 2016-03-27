@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Media.Animation;
 
 // Документацию по шаблону элемента "Основная страница" см. по адресу http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -65,9 +66,19 @@ namespace Save_the_Children
             playArea.Children.Add(enemy);
         }
 
-        private void AnimateEnemy(ContentControl enemy, int p1, double p2, string p3)
+        private void AnimateEnemy(ContentControl enemy, double from, double to, string propertyToAnimate)
         {
-            throw new NotImplementedException();
+            Storyboard storyboard = new Storyboard() { AutoReverse = true, RepeatBehavior = RepeatBehavior.Forever };
+            DoubleAnimation animation = new DoubleAnimation()
+            {
+                From = from,
+                To = to,
+                Duration = new Duration(TimeSpan.FromSeconds(random.Next(4, 6)))
+            };
+            Storyboard.SetTarget(animation, enemy);
+            Storyboard.SetTargetProperty(animation, propertyToAnimate);
+            storyboard.Children.Add(animation);
+            storyboard.Begin();
         }
     }
 }
