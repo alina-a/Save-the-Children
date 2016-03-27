@@ -43,9 +43,11 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
         <Button x:Name="startButton" Content="Старт!" Grid.Row="2" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="49,10,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <StackPanel Grid.Column="2" Orientation="Vertical" Grid.Row="2">
+            <TextBlock TextWrapping="Wrap" Text="Берегись его" Style="{StaticResource SubheaderTextStyle}"/>
+            <ContentControl Content="ContentControl" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
         <ProgressBar Grid.Column="1" HorizontalAlignment="Left" Height="10" Margin="366,81,0,0" Grid.Row="2" VerticalAlignment="Top" Width="100"/>
-        <ContentControl Content="ContentControl" Grid.Column="2" HorizontalAlignment="Left" Margin="49,77,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="299,98,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="38,31,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
 
