@@ -124,7 +124,10 @@
     <None Include="Save the Children_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ch2.png" />
+    <Content Include="Assets\door.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\roma2.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />

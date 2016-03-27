@@ -14,6 +14,11 @@
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">Save the Children</x:String>
+        <ControlTemplate x:Key="EnemyTemplate" TargetType="ContentControl">
+            <Grid>
+                <Image Source="Assets/roma2.png" Height="130" VerticalAlignment="Center" HorizontalAlignment="Center" Width="87"/>
+            </Grid>
+        </ControlTemplate>
     </Page.Resources>
 
     <!--
@@ -45,11 +50,18 @@
         <Button x:Name="startButton" Content="Старт!" Grid.Row="2" HorizontalAlignment="Center"/>
         <StackPanel Grid.Column="2" Orientation="Vertical" Grid.Row="2">
             <TextBlock TextWrapping="Wrap" Text="Берегись его" Style="{StaticResource SubheaderTextStyle}"/>
-            <ContentControl Content="ContentControl" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ContentControl Content="ContentControl" HorizontalAlignment="Center" VerticalAlignment="Center" Template="{StaticResource EnemyTemplate}"/>
         </StackPanel>
-        <ProgressBar Grid.Column="1" HorizontalAlignment="Left" Height="10" Margin="366,81,0,0" Grid.Row="2" VerticalAlignment="Top" Width="100"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="299,98,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="38,31,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
+        <ProgressBar Grid.Column="1" Grid.Row="2" Height="20"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Игра окончена" VerticalAlignment="Center" FontSize="72"/>
+        <Canvas Grid.Row="1" Grid.ColumnSpan="3">
+            <Canvas.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF41F360" Offset="1"/>
+                </LinearGradientBrush>
+            </Canvas.Background>
+        </Canvas>
 
         <VisualStateManager.VisualStateGroups>
 
