@@ -53,7 +53,6 @@
             <ContentControl Content="ContentControl" HorizontalAlignment="Center" VerticalAlignment="Center" Template="{StaticResource EnemyTemplate}"/>
         </StackPanel>
         <ProgressBar Grid.Column="1" Grid.Row="2" Height="20"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Игра окончена" VerticalAlignment="Center" FontSize="72"/>
         <Canvas Grid.Row="1" Grid.ColumnSpan="3">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -61,7 +60,10 @@
                     <GradientStop Color="#FF41F360" Offset="1"/>
                 </LinearGradientBrush>
             </Canvas.Background>
+            <Image x:Name="child" Height="100" Width="100" Source="Assets/ch2.png"/>
+            <Image x:Name="target" Height="100" Width="100" Source="Assets/door.png" Canvas.Left="164" Canvas.Top="94"/>
         </Canvas>
+        <TextBlock x:Name="gameOverText" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="Игра окончена" VerticalAlignment="Center" FontSize="72"/>
 
         <VisualStateManager.VisualStateGroups>
 
