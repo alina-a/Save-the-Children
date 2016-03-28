@@ -23,9 +23,43 @@ namespace Save_the_Children
     public sealed partial class MainPage : Save_the_Children.Common.LayoutAwarePage
     {
         Random random = new Random();
+        DispatcherTimer enemyTimer = new DispatcherTimer();
+        DispatcherTimer targetTimer = new DispatcherTimer();
+        bool humanCaptured = false;
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            enemyTimer.Tick += enemyTimer_Tick;
+            enemyTimer.Interval = TimeSpan.FromSeconds(2);
+
+            targetTimer.Tick += targetTimer_Tick;
+            targetTimer.Interval = TimeSpan.FromSeconds(.1);
+        }
+
+        void targetTimer_Tick(object sender, object e)
+        {
+            progressBar.Value += 1;
+            if (progressBar.Value >= progressBar.Maximum)
+                EndTheGame();
+        }
+
+        private void EndTheGame()
+        {
+            if (!playArea.Children.Contains(gameOverText))
+            {
+                enemyTimer.Stop();
+                targetTimer.Stop();
+                humanCaptured = false;
+                startButton.Visibility = Visibility.Visible;
+                gameOverText.Visibility = Visibility.Visible;
+            }
+        }
+
+        void enemyTimer_Tick(object sender, object e)
+        {
+            AddEnemy();
         }
 
         /// <summary>
@@ -53,7 +87,21 @@ namespace Save_the_Children
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            AddEnemy();
+            StartGame();
+        }
+
+        private void StartGame()
+        {
+            child.IsHitTestVisible = true;
+            humanCaptured = false;
+            progressBar.Value = 0;
+            startButton.Visibility = Visibility.Collapsed;
+            playArea.Children.Clear();
+            playArea.Children.Add(target);
+            playArea.Children.Add(child);
+            enemyTimer.Start();
+            targetTimer.Start();
+            gameOverText.Visibility = Visibility.Collapsed;
         }
 
         private void AddEnemy()
@@ -73,7 +121,7 @@ namespace Save_the_Children
             {
                 From = from,
                 To = to,
-                Duration = new Duration(TimeSpan.FromSeconds(random.Next(4, 6)))
+                Duration = new Duration(TimeSpan.FromSeconds(random.Next(8, 12)))
             };
             Storyboard.SetTarget(animation, enemy);
             Storyboard.SetTargetProperty(animation, propertyToAnimate);
