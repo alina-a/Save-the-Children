@@ -128,5 +128,28 @@ namespace Save_the_Children
             storyboard.Children.Add(animation);
             storyboard.Begin();
         }
+
+        private void child_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            if (enemyTimer.IsEnabled)
+            {
+                humanCaptured = true;
+                child.IsHitTestVisible = false;
+            }
+        }
+
+        private void target_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            if (targetTimer.IsEnabled && humanCaptured)
+            {
+                progressBar.Value = 0;
+                Canvas.SetLeft(target, random.Next(100, (int)playArea.ActualWidth - 100));
+                Canvas.SetTop(target, random.Next(100, (int)playArea.ActualHeight - 100));
+                Canvas.SetLeft(child, random.Next(100, (int)playArea.ActualWidth - 100));
+                Canvas.SetTop(child, random.Next(100, (int)playArea.ActualHeight - 100));
+                humanCaptured = false;
+                child.IsHitTestVisible = true;
+            }
+        }
     }
 }
