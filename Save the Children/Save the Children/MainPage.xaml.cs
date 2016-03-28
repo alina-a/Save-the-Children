@@ -129,7 +129,7 @@ namespace Save_the_Children
             storyboard.Begin();
         }
 
-        private void child_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void child_PointerPressed(object sender, PointerRoutedEventArgs e) //щелчок кнопкой мыши (любой)
         {
             if (enemyTimer.IsEnabled)
             {
@@ -150,6 +150,32 @@ namespace Save_the_Children
                 humanCaptured = false;
                 child.IsHitTestVisible = true;
             }
+        }
+
+        private void grid_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+            if (humanCaptured)
+            {
+                Point pointerPosition = e.GetCurrentPoint(null).Position;
+                Point relativePosition = grid.TransformToVisual(playArea).TransformPoint(pointerPosition);
+                if ((Math.Abs(relativePosition.X - Canvas.GetLeft(child)) > child.ActualWidth * 3)
+                    || (Math.Abs(relativePosition.Y - Canvas.GetTop(child)) > child.ActualHeight * 3))
+                {
+                    humanCaptured = false;
+                    child.IsHitTestVisible = true;
+                }
+                else
+                {
+                    Canvas.SetLeft(child, relativePosition.X - child.ActualWidth / 2);
+                    Canvas.SetTop(child, relativePosition.Y - child.ActualHeight / 2);
+                }
+            }
+        }
+
+        private void grid_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            if (humanCaptured)
+                EndTheGame();
         }
     }
 }
